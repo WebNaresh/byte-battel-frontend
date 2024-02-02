@@ -24,6 +24,7 @@ const MiniForm = () => {
     name: z.string(),
     address: z.string(),
   });
+  console.log(`🚀 ~ file: mini-form.jsx:27 ~ formSchema:`, formSchema);
   const { formState, control, getValues, handleSubmit } = useForm({
     resolver: zodResolver(formSchema),
     defaultValues: {
