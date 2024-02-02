@@ -26,7 +26,7 @@ const Providers = () => {
     return navigate("/login");
   }
   return (
-    <div>
+    <div className="p-8 flex flex-col gap-4">
       <div className="">
         Welcome to{" "}
         <span className=" text-primary font-bold"> सहाय्य भोजन </span>

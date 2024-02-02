@@ -16,7 +16,6 @@ import useAppState from "../../hooks/useAppState";
 export default function TopNav() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { user, setUser } = useAppState();
-  console.log(`🚀 ~ file: TopNav.jsx:19 ~ user:`, user);
   const { removeCookie } = useAppCookies();
 
   const isMenuOpen = Boolean(anchorEl);
@@ -25,7 +24,7 @@ export default function TopNav() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    setAnchorEl(null);
+    // setAnchorEl(null);
   };
   const handleLogout = () => {
     setAnchorEl(null);

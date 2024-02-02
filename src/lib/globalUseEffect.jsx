@@ -19,9 +19,10 @@ const UseEffectState = (props) => {
   useEffect(() => {
     cookies["app-cookie"];
     if (user === null) {
-      const user = jwtDecode(cookies["app-cookie"]);
-      console.log(`🚀 ~ file: globalUseEffect.jsx:23 ~ user:`, user);
-      setUser(user.user);
+      if (cookies["app-cookie"]) {
+        const user = jwtDecode(cookies["app-cookie"]);
+        setUser(user.user);
+      }
     }
   }, []);
 

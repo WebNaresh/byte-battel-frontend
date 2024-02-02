@@ -1,3 +1,4 @@
+import { Card, CardContent, Chip, Typography } from "@mui/material";
 import { useQuery } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
@@ -9,7 +10,6 @@ const FoodList = () => {
   const { user } = useAppState();
   const { cookies } = useAppCookies();
   const navigate = useNavigate();
-  console.log(`🚀 ~ file: page.jsx:23 ~ user:`, user);
   const fetchFormDetails = async () => {
     const config = {
       headers: {
@@ -24,14 +24,73 @@ const FoodList = () => {
     return data.data;
   };
   const { data } = useQuery({
-    queryKey: ["food-item"],
+    queryKey: ["food-item-provider"],
     queryFn: fetchFormDetails,
   });
   if (user === null) {
     return navigate("/login");
   }
-  console.log(`🚀 ~ file: page.jsx:44 ~ data:`, data);
-  return <div>FoodList</div>;
+  return (
+    <div className=" flex flex-col gap-4">
+      {data?.foodItems.map((doc) => {
+        return (
+          <Card variant="outlined" className="">
+            <>
+              <CardContent className="flex flex-col !gap-2">
+                <Typography
+                  variant="h5"
+                  component="div"
+                  className="flex justify-between"
+                >
+                  <div>{doc?.name}</div>
+                  <div className=" text-sm">
+                    date of expiration after {doc?.shelfLife} days
+                  </div>
+                </Typography>
+                <Typography
+                  sx={{ fontSize: 14 }}
+                  color="text.secondary"
+                  gutterBottom
+                >
+                  {" "}
+                  Date of Creation:{" "}
+                  {new Date(doc?.dateOfCreation)?.toLocaleDateString("en-US", {
+                    day: "numeric",
+                    month: "short",
+                    year: "numeric",
+                  })}
+                </Typography>
+                <Typography sx={{ mb: 1.5 }} color="text.secondary">
+                  {doc?.description}
+                </Typography>
+                <div className="flex gap-4">
+                  {doc?.items?.map((doc2, i) => {
+                    console.log(
+                      `🚀 ~ file: food-item-list.jsx:68 ~ doc2:`,
+                      doc2
+                    );
+
+                    return (
+                      <Chip
+                        key={i}
+                        label={doc2}
+                        variant="contained"
+                        color="primary"
+                      />
+                    );
+                  })}
+                </div>
+                <div className="font-medium text-sm">
+                  {doc?.serving_size} peoples can be served
+                </div>
+              </CardContent>
+              {/* <CardActions></CardActions> */}
+            </>
+          </Card>
+        );
+      })}
+    </div>
+  );
 };
 
 export default FoodList;

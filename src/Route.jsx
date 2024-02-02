@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages//Home/Home";
 import About from "./pages/About/About";
+import Consumer from "./pages/Consumer/page";
 import Login from "./pages/Login/page";
 import Providers from "./pages/Provider/page";
 import Signup from "./pages/Signup/page";
@@ -13,6 +14,7 @@ const App = () => {
       <Route exact path="/signup" element={<Signup />} />
       <Route exact path="/login" element={<Login />} />
       <Route exact path="/providers" element={<Providers />} />
+      <Route exact path="/consumers" element={<Consumer />} />
     </Routes>
   );
 };
