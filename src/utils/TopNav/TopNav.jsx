@@ -24,7 +24,7 @@ export default function TopNav() {
     setAnchorEl(event.currentTarget);
   };
   const handleClose = () => {
-    // setAnchorEl(null);
+    setAnchorEl(null);
   };
   const handleLogout = () => {
     setAnchorEl(null);
@@ -91,9 +91,11 @@ export default function TopNav() {
                     <MenuItem onClick={handleClose}>Signup</MenuItem>
                   </Link>
                 )}
-                <Link to={"/login"}>
-                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
-                </Link>
+                {user !== null && (
+                  <Link to={"/login"}>
+                    <MenuItem onClick={handleLogout}>Logout</MenuItem>
+                  </Link>
+                )}
               </Menu>
             </Typography>
           </div>
