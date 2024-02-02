@@ -6,6 +6,7 @@ const useAppState = create((set) => ({
     type: "success",
     msg: "this is success alert",
   },
+  user: null,
   setAppAlert: (newAlert) => set({ appAlert: { ...newAlert } }),
   appLoading: {
     load: false,
@@ -14,6 +15,7 @@ const useAppState = create((set) => ({
   setAppLoading: (newLoading) => set({ appLoading: { ...newLoading } }),
   progress: 10,
   setProgress: (newProgress) => set({ progress: newProgress }),
+  setUser: (user) => set({ user }),
 }));
 
 export default useAppState;

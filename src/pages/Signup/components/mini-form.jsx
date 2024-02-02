@@ -36,7 +36,7 @@ const MiniForm = () => {
     },
   });
 
-  const addProfile = async (data) => {
+  const signupFunction = async (data) => {
     const config = { headers: { "Content-Type": "application/json" } };
     const result = await axios.post(
       `${import.meta.env.VITE_APP_BACKEND}/route/register`,
@@ -46,7 +46,7 @@ const MiniForm = () => {
     return result.data;
   };
   const { mutate } = useMutation({
-    mutationFn: addProfile,
+    mutationFn: signupFunction,
     onSuccess: async (data) => {
       console.log(`🚀 ~ file: mini-form.jsx:57 ~ data:`, data);
       console.log(`🚀 ~ file: mini-form.jsx:48 ~ data:`, data);

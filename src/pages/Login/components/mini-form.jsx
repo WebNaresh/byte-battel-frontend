@@ -6,10 +6,16 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import AuthInputFiled from "../../../global/components/inpufield";
+import useAppCookies from "../../../hooks/useAppCookies";
+import useAppState from "../../../hooks/useAppState";
 
 const MiniForm = () => {
+  const { setCookie } = useAppCookies();
+  const { setUser, user } = useAppState();
+  const navigate = useNavigate();
   const formSchema = z.object({
     email: z.string().email("Enter a valid email"),
     password: z.string().min(4, { message: "Password is minimum of 4 length" }),
@@ -22,7 +28,7 @@ const MiniForm = () => {
     },
   });
 
-  const addProfile = async (data) => {
+  const loginFunction = async (data) => {
     const config = { headers: { "Content-Type": "application/json" } };
     const result = await axios.post(
       `${import.meta.env.VITE_APP_BACKEND}/route/login`,
@@ -32,11 +38,16 @@ const MiniForm = () => {
     return result.data;
   };
   const { mutate } = useMutation({
-    mutationFn: addProfile,
+    mutationFn: loginFunction,
     onSuccess: async (data) => {
-      console.log(`🚀 ~ file: mini-form.jsx:57 ~ data:`, data);
-      console.log(`🚀 ~ file: mini-form.jsx:48 ~ data:`, data);
+      setCookie("app-cookie", data.token);
+      setUser(data.user);
       toast.success("You are logged in successfully");
+      if (data.user.type === "Provider") {
+        navigate("/providers");
+      } else {
+        navigate("/consumers");
+      }
     },
     onError: async (data) => {
       console.error(`🚀 ~ file: mini-form.jsx:48 ~ data:`, data);
@@ -50,7 +61,6 @@ const MiniForm = () => {
     mutate(data);
   };
   const { errors } = formState;
-  console.log(`🚀 ~ file: mini-form.jsx:60 ~ errors:`, errors);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
       <AuthInputFiled
