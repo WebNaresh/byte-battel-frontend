@@ -6,8 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + MUI + Tailwind CSS</title>
   </head>
-  <body>
+  <body onload="hideLoader()">
+    <div
+      id="uniqueLoader"
+      class="flex justify-center items-center fixed top-[50%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-full h-full backdrop-filter backdrop-blur-sm bg-opacity-30 z-50"
+    >
+      <div class="preloaderBg" id="preloader">
+        <div class="preloader"></div>
+        <div class="preloader2"></div>
+      </div>
+    </div>
     <div id="root"></div>
+    <script>
+      function hideLoader() {
+        var loaderContainer = document.getElementById("uniqueLoader");
+        setTimeout(function () {
+          loaderContainer.style.display = "none";
+        }, 2000);
+      }
+    </script>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>

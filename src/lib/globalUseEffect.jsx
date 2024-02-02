@@ -19,13 +19,11 @@ const UseEffectState = (props) => {
     // eslint-disable-next-line
   }, [location]);
   useEffect(() => {
-    cookies["app-cookie"];
     if (user === null) {
       if (cookies["app-cookie"]) {
         const user = jwtDecode(cookies["app-cookie"]);
         setUser(user.user);
-      }
-      {
+      } else {
         navigate("/login");
       }
     }

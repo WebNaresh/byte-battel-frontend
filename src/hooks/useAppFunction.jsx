@@ -1,7 +1,7 @@
-import useAppCookies from "./useAppCookies";
+import useAppState from "./useAppState";
 
 export const useAppFunction = () => {
-  const { setAppAlert, setAppLoading } = useAppCookies();
+  const { setAppAlert, setAppLoading } = useAppState();
 
   const handleAlert = (alert, type, msg) => {
     setAppAlert({
@@ -12,6 +12,7 @@ export const useAppFunction = () => {
   };
 
   const handleLoader = (load, color) => {
+    console.log(`🚀 ~ file: useAppFunction.jsx:15 ~ load, color:`, load, color);
     setAppLoading({
       load: load || true,
       color: color || "#fff",

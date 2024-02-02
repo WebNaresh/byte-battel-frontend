@@ -18,3 +18,39 @@ body {
   border-radius: 10px;
   background-color: #1d6eb7;
 }
+.preloaderBg {
+  position: fixed;
+  z-index: 10;
+  top: 25%;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+}
+
+.preloader {
+  margin: auto;
+  background: url("/logo-image.svg") no-repeat center;
+  background-size: 125px;
+  width: 250px;
+  height: 250px;
+  /* padding: 66px; */
+}
+.preloader2 {
+  border: 5px solid #f97316;
+  border-top: 5px solid hsl(var(--primary));
+  border-radius: 50%;
+  width: 350px;
+  height: 350px;
+  animation: spin 1s ease-in-out infinite;
+  position: relative;
+  margin: auto;
+  top: -280px;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}

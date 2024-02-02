@@ -6,10 +6,13 @@ import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 import { z } from "zod";
 import AuthInputFiled from "../../../global/components/inpufield";
+import Loader from "../../../utils/Loader/page";
 
 const MiniForm = () => {
+  const navigate = useNavigate();
   const formSchema = z.object({
     name: z.string().min(2, {
       message: "Username must be at least 2 characters.",
@@ -45,19 +48,25 @@ const MiniForm = () => {
     );
     return result.data;
   };
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: signupFunction,
     onSuccess: async (data) => {
-      toast.success("You are logged in successfully");
+      toast.success("You are Signup Successfully now you can login");
+      navigate("/login");
     },
     onError: async (data) => {
-      console.error(`🚀 ~ file: mini-form.jsx:48 ~ data:`, data);
+      console.error(`🚀 ~  file: mini-form.jsx:48 ~ data:`, data);
+
       toast.error(
-        data.response.data.message || "You are logged in successfully"
+        data?.response?.data?.message ||
+          data?.response?.data?.error ||
+          "Something went wrong"
       );
     },
   });
-
+  if (isPending) {
+    return <Loader />;
+  }
   const onSubmit = (data) => {
     mutate(data);
   };

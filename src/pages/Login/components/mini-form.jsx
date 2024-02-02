@@ -11,10 +11,11 @@ import { z } from "zod";
 import AuthInputFiled from "../../../global/components/inpufield";
 import useAppCookies from "../../../hooks/useAppCookies";
 import useAppState from "../../../hooks/useAppState";
+import Loader from "../../../utils/Loader/page";
 
 const MiniForm = () => {
   const { setCookie } = useAppCookies();
-  const { setUser, user } = useAppState();
+  const { setUser } = useAppState();
   const navigate = useNavigate();
   const formSchema = z.object({
     email: z.string().email("Enter a valid email"),
@@ -37,7 +38,7 @@ const MiniForm = () => {
     );
     return result.data;
   };
-  const { mutate } = useMutation({
+  const { mutate, isPending } = useMutation({
     mutationFn: loginFunction,
     onSuccess: async (data) => {
       setCookie("app-cookie", data.token);
@@ -56,7 +57,9 @@ const MiniForm = () => {
       );
     },
   });
-
+  if (isPending) {
+    return <Loader />;
+  }
   const onSubmit = (data) => {
     mutate(data);
   };

@@ -11,12 +11,14 @@ import {
 import * as React from "react";
 import { Link } from "react-router-dom";
 import useAppCookies from "../../hooks/useAppCookies";
+import useAppFunction from "../../hooks/useAppFunction";
 import useAppState from "../../hooks/useAppState";
 
 export default function TopNav() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { user, setUser } = useAppState();
   const { removeCookie } = useAppCookies();
+  const { handleLoader } = useAppFunction();
 
   const isMenuOpen = Boolean(anchorEl);
   const open = Boolean(anchorEl);
@@ -30,6 +32,7 @@ export default function TopNav() {
     setAnchorEl(null);
     setUser(null);
     removeCookie("app-cookie");
+    handleLoader(true, "#f97316");
   };
 
   const handleProfileMenuOpen = (event) => {

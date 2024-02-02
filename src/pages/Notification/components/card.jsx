@@ -11,9 +11,6 @@ const style = {
   p: 4,
 };
 const NotificationCard = ({ doc }) => {
-  const [open, setOpen] = React.useState(false);
-  const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
   return (
     <Card variant="outlined" className="">
       <>
