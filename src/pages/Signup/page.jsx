@@ -1,7 +1,6 @@
 import React from "react";
 import MiniForm from "./components/mini-form";
-
-const Login = () => {
+const Signup = () => {
   return (
     <div>
       <div className="grid grid-cols-2 mt-4 m-2 border-gray-300 border-[0.2px] rounded-md shadow-lg">
@@ -22,4 +21,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default Signup;
