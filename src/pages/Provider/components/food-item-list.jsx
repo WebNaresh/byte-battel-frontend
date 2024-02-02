@@ -65,11 +65,6 @@ const FoodList = () => {
                 </Typography>
                 <div className="flex gap-4">
                   {doc?.items?.map((doc2, i) => {
-                    console.log(
-                      `🚀 ~ file: food-item-list.jsx:68 ~ doc2:`,
-                      doc2
-                    );
-
                     return (
                       <Chip
                         key={i}

@@ -13,7 +13,6 @@ import useAppCookies from "../../../hooks/useAppCookies";
 import useAppState from "../../../hooks/useAppState";
 
 const MiniForm = ({ handleClose, id }) => {
-  console.log(`🚀 ~ file: mini-form.jsx:16 ~ id:`, id);
   const { cookies } = useAppCookies();
   const { setUser, user } = useAppState();
   const queryClient = useQueryClient();
@@ -46,7 +45,6 @@ const MiniForm = ({ handleClose, id }) => {
   const { mutate } = useMutation({
     mutationFn: addFormItem,
     onSuccess: async (data) => {
-      console.log(`🚀 ~ file: mini-form.jsx:49 ~ data:`, data);
       toast.success(data.message);
       handleClose();
       await queryClient.invalidateQueries({

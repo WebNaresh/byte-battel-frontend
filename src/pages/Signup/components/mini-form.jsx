@@ -48,8 +48,6 @@ const MiniForm = () => {
   const { mutate } = useMutation({
     mutationFn: signupFunction,
     onSuccess: async (data) => {
-      console.log(`🚀 ~ file: mini-form.jsx:57 ~ data:`, data);
-      console.log(`🚀 ~ file: mini-form.jsx:48 ~ data:`, data);
       toast.success("You are logged in successfully");
     },
     onError: async (data) => {
@@ -64,7 +62,6 @@ const MiniForm = () => {
     mutate(data);
   };
   const { errors } = formState;
-  console.log(`🚀 ~ file: mini-form.jsx:60 ~ errors:`, errors);
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="">
       <AuthInputFiled

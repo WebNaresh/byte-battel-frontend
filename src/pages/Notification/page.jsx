@@ -23,7 +23,6 @@ const Notification = () => {
     queryKey: ["notifications"],
     queryFn: getNotification,
   });
-  console.log(`🚀 ~ file: page.jsx:26 ~ data:`, data);
   return (
     <div className="p-8 ">
       <div className="font-bold flex-col gap-4 flex">

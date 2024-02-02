@@ -124,7 +124,6 @@ const AuthInputFiled = ({
             name={name}
             id={name}
             render={({ field }) => {
-              console.log(`🚀 ~ file: inpufield.jsx:127 ~ field:`, field);
               return (
                 <Autocomplete
                   multiple
@@ -133,7 +132,6 @@ const AuthInputFiled = ({
                   defaultValue={field.value}
                   freeSolo
                   onChange={(e, value) => {
-                    console.log(`🚀 ~ file: page.jsx:39 ~ value:`, value);
                     field.onChange(value);
                   }}
                   renderTags={(value, getTagProps) =>

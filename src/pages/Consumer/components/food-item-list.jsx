@@ -31,7 +31,6 @@ const FoodList = () => {
   if (user === null) {
     return navigate("/login");
   }
-  console.log(`🚀 ~ file: food-item-list.jsx:41 ~ data:`, data);
   return (
     <div className=" flex flex-col gap-4">
       {data?.foodItems.map((doc) => {
