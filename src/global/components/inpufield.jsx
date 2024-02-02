@@ -1,5 +1,12 @@
 import { ErrorMessage } from "@hookform/error-message";
-import { InputLabel, MenuItem, Select } from "@mui/material";
+import {
+  Autocomplete,
+  Chip,
+  InputLabel,
+  MenuItem,
+  Select,
+  TextField,
+} from "@mui/material";
 import { default as React } from "react";
 import { Controller } from "react-hook-form";
 // import Autocomplete from "react-google-autocomplete";
@@ -106,6 +113,62 @@ const AuthInputFiled = ({
           />
         </div>
       </div>
+    );
+  }
+  if (type === "autocomplete") {
+    return (
+      <>
+        <div className="space-y-1 w-full ">
+          <Controller
+            control={control}
+            name={name}
+            id={name}
+            render={({ field }) => {
+              console.log(`🚀 ~ file: inpufield.jsx:127 ~ field:`, field);
+              return (
+                <Autocomplete
+                  multiple
+                  id="tags-filled"
+                  options={field.value}
+                  defaultValue={field.value}
+                  freeSolo
+                  onChange={(e, value) => {
+                    console.log(`🚀 ~ file: page.jsx:39 ~ value:`, value);
+                    field.onChange(value);
+                  }}
+                  renderTags={(value, getTagProps) =>
+                    value.map((option, index) => (
+                      <Chip
+                        variant="outlined"
+                        label={option}
+                        {...getTagProps({ index })}
+                      />
+                    ))
+                  }
+                  renderInput={(params) => (
+                    <TextField
+                      {...params}
+                      variant="outlined"
+                      label={label}
+                      placeholder={placeholder}
+                      size="small"
+                    />
+                  )}
+                />
+              );
+            }}
+          />
+          <div className="h-4 !mb-1">
+            <ErrorMessage
+              errors={errors}
+              name={name}
+              render={({ message }) => (
+                <p className="text-sm text-red-500">{message}</p>
+              )}
+            />
+          </div>
+        </div>
+      </>
     );
   }
   return (

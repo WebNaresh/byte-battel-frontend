@@ -10,9 +10,14 @@ import {
 } from "@mui/material";
 import * as React from "react";
 import { Link } from "react-router-dom";
+import useAppCookies from "../../hooks/useAppCookies";
+import useAppState from "../../hooks/useAppState";
 
 export default function TopNav() {
   const [anchorEl, setAnchorEl] = React.useState(null);
+  const { user, setUser } = useAppState();
+  console.log(`🚀 ~ file: TopNav.jsx:19 ~ user:`, user);
+  const { removeCookie } = useAppCookies();
 
   const isMenuOpen = Boolean(anchorEl);
   const open = Boolean(anchorEl);
@@ -21,6 +26,11 @@ export default function TopNav() {
   };
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  const handleLogout = () => {
+    setAnchorEl(null);
+    setUser(null);
+    removeCookie("app-cookie");
   };
 
   const handleProfileMenuOpen = (event) => {
@@ -71,11 +81,18 @@ export default function TopNav() {
                   "aria-labelledby": "basic-button",
                 }}
               >
+                {user === null && (
+                  <Link to={"/login"}>
+                    <MenuItem onClick={handleClose}>Login</MenuItem>
+                  </Link>
+                )}
+                {user === null && (
+                  <Link to={"/signup"}>
+                    <MenuItem onClick={handleClose}>Signup</MenuItem>
+                  </Link>
+                )}
                 <Link to={"/login"}>
-                  <MenuItem onClick={handleClose}>Login</MenuItem>
-                </Link>
-                <Link to={"/signup"}>
-                  <MenuItem onClick={handleClose}>Signup</MenuItem>
+                  <MenuItem onClick={handleLogout}>Logout</MenuItem>
                 </Link>
               </Menu>
             </Typography>
