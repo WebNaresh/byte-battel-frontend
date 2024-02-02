@@ -58,6 +58,7 @@ const FoodCard = ({ doc }) => {
 
               return (
                 <Chip
+                  className="!text-white"
                   key={i}
                   label={doc2}
                   variant="contained"
@@ -71,7 +72,12 @@ const FoodCard = ({ doc }) => {
           </div>
         </CardContent>
         <CardActions>
-          <Button onClick={handleOpen} size="small" variant="contained">
+          <Button
+            onClick={handleOpen}
+            size="small"
+            className="!text-white"
+            variant="contained"
+          >
             Apply for Food
           </Button>
         </CardActions>

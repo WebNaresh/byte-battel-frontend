@@ -84,7 +84,11 @@ const MiniForm = () => {
         errors={errors}
         error={errors.password}
       />
-      <Button variant="contained" type="submit" className="flex mx-auto">
+      <Button
+        variant="contained"
+        type="submit"
+        className="flex mx-auto !text-white"
+      >
         Submit
       </Button>
     </form>

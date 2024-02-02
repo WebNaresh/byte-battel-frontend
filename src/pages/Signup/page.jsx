@@ -2,10 +2,10 @@ import React from "react";
 import MiniForm from "./components/mini-form";
 const Signup = () => {
   return (
-    <div>
-      <div className="grid grid-cols-2 mt-4 m-2 border-gray-300 border-[0.2px] rounded-md shadow-lg">
+    <div className="flex flex-col items-center">
+      <div className="grid w-fit grid-cols-2 mt-4 m-8 border-gray-300 border-[0.2px] rounded-md shadow-lg">
         <div className="flex justify-center flex-col p-8">
-          <img src="/loginImage.svg" className="h-full" />
+          <img src="/loginImage.svg" className="h-[300px]" />
           <div className="!text-center !text-primary">
             Sign-up to सहाय्य भोजन
           </div>

@@ -50,7 +50,8 @@ export default function TopNav() {
             <Link to={"/"}>
               <Typography
                 variant="body1"
-                style={{ color: "#1D6EB7", fontWeight: "bold" }}
+                style={{ fontWeight: "bold" }}
+                className="!text-primary"
                 component="h2"
               >
                 सहाय्य भोजन

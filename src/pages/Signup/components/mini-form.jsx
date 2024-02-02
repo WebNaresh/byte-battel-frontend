@@ -66,7 +66,7 @@ const MiniForm = () => {
   const { errors } = formState;
   console.log(`🚀 ~ file: mini-form.jsx:60 ~ errors:`, errors);
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="space-y-8">
+    <form onSubmit={handleSubmit(onSubmit)} className="">
       <AuthInputFiled
         name="name"
         icon={Person}

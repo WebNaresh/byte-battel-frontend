@@ -7,7 +7,7 @@ import {
   TimerOutlined,
 } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -21,6 +21,7 @@ import useAppState from "../../../hooks/useAppState";
 const MiniForm = ({ handleClose }) => {
   const { cookies } = useAppCookies();
   const { setUser, user } = useAppState();
+  const queryClient = useQueryClient();
   const navigate = useNavigate();
   const formSchema = z.object({
     name: z.string(),
@@ -60,6 +61,9 @@ const MiniForm = ({ handleClose }) => {
     onSuccess: async (data) => {
       toast.success(data.message);
       handleClose();
+      await queryClient.invalidateQueries({
+        queryKey: [`food-item-provider`],
+      });
     },
     onError: async (data) => {
       console.error(`🚀 ~ file: mini-form.jsx:48 ~ data:`, data);

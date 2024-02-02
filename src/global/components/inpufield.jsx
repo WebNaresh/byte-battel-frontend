@@ -27,7 +27,7 @@ const AuthInputFiled = ({
   if (type === "select") {
     return (
       <>
-        <div className="space-y-1 w-full ">
+        <div className=" w-full ">
           <Controller
             control={control}
             name={name}
@@ -67,7 +67,7 @@ const AuthInputFiled = ({
 
   if (type === "checkbox") {
     return (
-      <div className="space-y-1 w-full ">
+      <div className=" w-full ">
         <Controller
           control={control}
           name={name}
@@ -118,7 +118,7 @@ const AuthInputFiled = ({
   if (type === "autocomplete") {
     return (
       <>
-        <div className="space-y-1 w-full ">
+        <div className=" w-full ">
           <Controller
             control={control}
             name={name}
@@ -172,7 +172,7 @@ const AuthInputFiled = ({
     );
   }
   return (
-    <div className="space-y-1 w-full ">
+    <div className=" w-full ">
       <label
         htmlFor={name}
         className={`${
