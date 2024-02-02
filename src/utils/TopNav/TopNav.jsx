@@ -1,6 +1,7 @@
 import { Person } from "@mui/icons-material";
 import {
   AppBar,
+  Badge,
   Box,
   IconButton,
   Menu,
@@ -8,6 +9,8 @@ import {
   Toolbar,
   Typography,
 } from "@mui/material";
+import { useQuery } from "@tanstack/react-query";
+import axios from "axios";
 import * as React from "react";
 import { Link } from "react-router-dom";
 import useAppCookies from "../../hooks/useAppCookies";
@@ -17,7 +20,7 @@ import useAppState from "../../hooks/useAppState";
 export default function TopNav() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const { user, setUser } = useAppState();
-  const { removeCookie } = useAppCookies();
+  const { removeCookie, cookies } = useAppCookies();
   const { handleLoader } = useAppFunction();
 
   const isMenuOpen = Boolean(anchorEl);
@@ -44,10 +47,26 @@ export default function TopNav() {
   };
 
   const menuId = "primary-search-account-menu";
-
+  const getNotification = async () => {
+    const config = {
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: cookies["app-cookie"],
+      },
+    };
+    let data = await axios.get(
+      `${import.meta.env.VITE_APP_BACKEND}/route/get-notification`,
+      config
+    );
+    return data.data;
+  };
+  const { data } = useQuery({
+    queryKey: ["notifications"],
+    queryFn: getNotification,
+  });
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar color="transparent" position="sticky" enableColorOnDark>
+      <AppBar component={"nav"} color="transparent" enableColorOnDark>
         <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <Link to={"/"}>
@@ -66,15 +85,21 @@ export default function TopNav() {
               style={{ fontSize: 14, fontWeight: "bold" }}
               color={"#1D6EB7"}
             >
-              <IconButton
-                id="basic-button"
-                aria-controls={open ? "basic-menu" : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? "true" : undefined}
-                onClick={handleClick}
+              <Badge
+                badgeContent={data?.notification?.length || 0}
+                color="warning"
               >
-                <Person color="primary" />
-              </IconButton>
+                <IconButton
+                  id="basic-button"
+                  aria-controls={open ? "basic-menu" : undefined}
+                  aria-haspopup="true"
+                  aria-expanded={open ? "true" : undefined}
+                  onClick={handleClick}
+                  className=" !border-[0.5px] !border-primary !border-solid"
+                >
+                  <Person color="primary" />
+                </IconButton>
+              </Badge>
               <Menu
                 id="basic-menu"
                 anchorEl={anchorEl}

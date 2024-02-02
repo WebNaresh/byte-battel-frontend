@@ -31,7 +31,7 @@ function App() {
           <AppAlert />
           <TopNav />
           <Toaster />
-          <div style={{ height: "100%", width: "100%" }}>
+          <div style={{ height: "100%", width: "100%", marginTop: "80px" }}>
             <Route />
           </div>
         </UseEffectState>

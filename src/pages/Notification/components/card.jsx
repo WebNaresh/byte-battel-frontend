@@ -12,7 +12,7 @@ const style = {
 };
 const NotificationCard = ({ doc }) => {
   return (
-    <Card variant="outlined" className="">
+    <Card variant="outlined" className="shadow-lg">
       <>
         <CardContent className="flex flex-col !gap-2">
           <Typography
@@ -31,7 +31,17 @@ const NotificationCard = ({ doc }) => {
               year: "numeric",
             })}
           </Typography>
-          <div className="font-medium text-sm">{doc?.foodItemId?.name}</div>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary">
+            {" "}
+            His Email Id is {doc?.creator?.email}
+          </Typography>
+          <Typography sx={{ fontSize: 14 }} color="text.secondary">
+            {" "}
+            His Phone number {doc?.creator?.phoneNo}
+          </Typography>
+          <div className="font-medium text-sm">
+            Person to be served is &nbsp;{doc?.quantity || 0}
+          </div>
         </CardContent>
       </>
     </Card>

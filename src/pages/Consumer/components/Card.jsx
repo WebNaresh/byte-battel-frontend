@@ -27,7 +27,7 @@ const FoodCard = ({ doc }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
   return (
-    <Card variant="outlined" className="">
+    <Card variant="outlined" className="!shadow-lg">
       <>
         <CardContent className="flex flex-col !gap-2">
           <Typography
@@ -37,7 +37,11 @@ const FoodCard = ({ doc }) => {
           >
             <div>{doc?.name}</div>
             <div className=" text-sm">
-              date of expiration after {doc?.shelfLife} days
+              expires after &nbsp;
+              {Math.ceil(
+                (new Date(doc?.shelfLife) - new Date()) / (1000 * 60 * 60 * 24)
+              )}{" "}
+              days
             </div>
           </Typography>
           <Typography sx={{ fontSize: 14 }} color="text.secondary" gutterBottom>

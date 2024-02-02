@@ -31,7 +31,7 @@ const FoodList = () => {
     return navigate("/login");
   }
   return (
-    <div className=" flex flex-col gap-4">
+    <div className="gap-4 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
       {data?.foodItems.map((doc) => {
         return (
           <Card variant="outlined" className="">
@@ -44,7 +44,12 @@ const FoodList = () => {
                 >
                   <div>{doc?.name}</div>
                   <div className=" text-sm">
-                    date of expiration after {doc?.shelfLife} days
+                    expires after &nbsp;
+                    {Math.ceil(
+                      (new Date(doc?.shelfLife) - new Date()) /
+                        (1000 * 60 * 60 * 24)
+                    )}{" "}
+                    days
                   </div>
                 </Typography>
                 <Typography

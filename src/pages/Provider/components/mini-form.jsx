@@ -22,6 +22,7 @@ const MiniForm = ({ handleClose }) => {
   const { cookies } = useAppCookies();
   const { setUser, user } = useAppState();
   const queryClient = useQueryClient();
+  console.log(`🚀 ~ file: mini-form.jsx:25 ~ queryClient:`, queryClient);
   const navigate = useNavigate();
   const formSchema = z.object({
     name: z.string(),

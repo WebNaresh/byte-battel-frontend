@@ -16,6 +16,7 @@ const MiniForm = ({ handleClose, id }) => {
   const { cookies } = useAppCookies();
   const { setUser, user } = useAppState();
   const queryClient = useQueryClient();
+  console.log(`🚀 ~ file: mini-form.jsx:19 ~ queryClient:`, queryClient);
   const navigate = useNavigate();
   const formSchema = z.object({
     quantity: z.string(),
@@ -46,10 +47,10 @@ const MiniForm = ({ handleClose, id }) => {
     mutationFn: addFormItem,
     onSuccess: async (data) => {
       toast.success(data.message);
-      handleClose();
       await queryClient.invalidateQueries({
-        queryKey: [`food-item-consumer`],
+        queryKey: ["food-item-consumer"],
       });
+      handleClose();
     },
     onError: async (data) => {
       console.error(`🚀 ~ file: mini-form.jsx:48 ~ data:`, data);
@@ -63,6 +64,7 @@ const MiniForm = ({ handleClose, id }) => {
     mutate(data);
   };
   const { errors } = formState;
+
   return (
     <form
       onSubmit={handleSubmit(onSubmit)}
