@@ -1,5 +1,6 @@
 import { jwtDecode } from "jwt-decode";
 import React, { createContext, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import useAppCookies from "../hooks/useAppCookies";
 import useAppState from "../hooks/useAppState";
 
@@ -8,6 +9,7 @@ const UseEffectContext = createContext();
 const UseEffectState = (props) => {
   const { setProgress, location, user, setUser } = useAppState();
   const { cookies } = useAppCookies();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setProgress(10);
@@ -22,6 +24,9 @@ const UseEffectState = (props) => {
       if (cookies["app-cookie"]) {
         const user = jwtDecode(cookies["app-cookie"]);
         setUser(user.user);
+      }
+      {
+        navigate("/login");
       }
     }
   }, []);
