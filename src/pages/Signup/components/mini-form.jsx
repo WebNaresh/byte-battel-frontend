@@ -21,7 +21,6 @@ const MiniForm = () => {
       .min(10, { message: "phone is minimum of 10 length" })
       .max(10, { message: "phone is minimum of 10 length" }),
     type: z.enum(["Provider", "Consumer"]),
-    name: z.string(),
     address: z.string(),
   });
   console.log(`🚀 ~ file: mini-form.jsx:27 ~ formSchema:`, formSchema);
