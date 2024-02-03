@@ -23,8 +23,6 @@ const UseEffectState = (props) => {
       if (cookies["app-cookie"]) {
         const user = jwtDecode(cookies["app-cookie"]);
         setUser(user.user);
-      } else {
-        navigate("/login");
       }
     }
   }, []);

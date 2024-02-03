@@ -37,8 +37,8 @@ const FoodList = () => {
   }
   return (
     <div className="gap-4 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-      {data?.foodItems.map((doc) => {
-        return <FoodCard doc={doc} />;
+      {data?.foodItems.map((doc, i) => {
+        return <FoodCard key={i} doc={doc} />;
       })}
     </div>
   );

@@ -5,6 +5,7 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import useAppCookies from "../../../hooks/useAppCookies";
 import useAppState from "../../../hooks/useAppState";
+import Loader from "../../../utils/Loader/page";
 
 const FoodList = () => {
   const { user } = useAppState();
@@ -23,18 +24,21 @@ const FoodList = () => {
     );
     return data.data;
   };
-  const { data } = useQuery({
+  const { data, isFetching } = useQuery({
     queryKey: ["food-item-provider"],
     queryFn: fetchFormDetails,
   });
   if (user === null) {
     return navigate("/login");
   }
+  if (isFetching) {
+    return <Loader />;
+  }
   return (
     <div className="gap-4 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
-      {data?.foodItems.map((doc) => {
+      {data?.foodItems.map((doc, i) => {
         return (
-          <Card variant="outlined" className="shadow-lg">
+          <Card key={i} variant="outlined" className="shadow-lg">
             <>
               <CardContent className="flex flex-col !gap-2">
                 <Typography
