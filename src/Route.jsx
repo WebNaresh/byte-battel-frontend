@@ -2,6 +2,7 @@ import React from "react";
 import { Route, Routes } from "react-router-dom";
 import Home from "./pages//Home/Home";
 import About from "./pages/About/About";
+import NotificationConsumer from "./pages/Consumer-Notification/page";
 import Consumer from "./pages/Consumer/page";
 import Login from "./pages/Login/page";
 import Notification from "./pages/Notification/page";
@@ -17,6 +18,11 @@ const App = () => {
       <Route exact path="/providers" element={<Providers />} />
       <Route exact path="/consumers" element={<Consumer />} />
       <Route exact path="/notification" element={<Notification />} />
+      <Route
+        exact
+        path="/notification-consumer"
+        element={<NotificationConsumer />}
+      />
     </Routes>
   );
 };

@@ -137,6 +137,11 @@ export default function TopNav() {
                     <MenuItem onClick={handleClose}>Notification</MenuItem>
                   </Link>
                 )}
+                {user !== null && user.type === "Consumer" && (
+                  <Link to={"/notification-consumer"}>
+                    <MenuItem onClick={handleClose}>Notification</MenuItem>
+                  </Link>
+                )}
               </Menu>
             </Typography>
           </div>

@@ -50,12 +50,12 @@ const HomeCard = () => {
         Welcome to <span className=" text-primary"> सहाय्य भोजन </span>
       </div>
       <div className="grid grid-cols-3 gap-4">
-        <Card sx={{ minWidth: 275 }} className="!bg-primary !text-white">
+        <Card sx={{ minWidth: 275 }} className="!bg-[#ffd7bb87] !text-primary">
           <CardContent className="!gap-4 flex flex-col">
             <Typography
               sx={{ fontSize: 14 }}
               gutterBottom
-              className="!text-white !font-bold !text-xl"
+              className="!text-primary !font-bold !text-xl"
             >
               Current month Donation
             </Typography>
@@ -63,10 +63,10 @@ const HomeCard = () => {
             <Typography variant="body2">{data?.totalQuantity}</Typography>
           </CardContent>
         </Card>
-        <Card className="!bg-primary !text-white">
+        <Card className="!bg-[#ffd7bb87] !text-primary">
           <CardContent className="!gap-4 flex flex-col">
             <Typography
-              className="!text-white !font-bold !text-xl"
+              className="!text-primary !font-bold !text-xl"
               gutterBottom
             >
               Current week Donation
