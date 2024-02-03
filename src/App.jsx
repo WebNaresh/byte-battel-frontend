@@ -4,7 +4,7 @@ import "@fontsource/roboto/500.css";
 import "@fontsource/roboto/700.css";
 import { CssBaseline, ThemeProvider, createTheme } from "@mui/material";
 import { Toaster } from "react-hot-toast";
-import { BrowserRouter } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import Route from "./Route";
 import UseEffectState from "./lib/globalUseEffect";
 import AppAlert from "./utils/AppAlert/AppAlert";
@@ -21,21 +21,28 @@ function App() {
       },
     },
   });
+  const param = useLocation();
+  console.log(`🚀 ~ file: App.jsx:25 ~ param:`, param);
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <BrowserRouter>
-        <UseEffectState>
-          <TopLoadingBar />
-          <AppLoader />
-          <AppAlert />
-          <TopNav />
-          <Toaster />
-          <div style={{ height: "100%", width: "100%", marginTop: "80px" }}>
-            <Route />
-          </div>
-        </UseEffectState>
-      </BrowserRouter>
+
+      <UseEffectState>
+        <TopLoadingBar />
+        <AppLoader />
+        <AppAlert />
+        <TopNav />
+        <Toaster />
+        <div
+          style={{
+            height: "100%",
+            width: "100%",
+            marginTop: param.pathname === "/" ? 0 : 80,
+          }}
+        >
+          <Route />
+        </div>
+      </UseEffectState>
     </ThemeProvider>
   );
 }

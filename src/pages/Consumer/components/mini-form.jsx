@@ -1,7 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { PeopleOutline } from "@mui/icons-material";
 import { Button } from "@mui/material";
-import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { useMutation } from "@tanstack/react-query";
 import axios from "axios";
 import React from "react";
 import { useForm } from "react-hook-form";
@@ -15,8 +15,7 @@ import useAppState from "../../../hooks/useAppState";
 const MiniForm = ({ handleClose, id }) => {
   const { cookies } = useAppCookies();
   const { setUser, user } = useAppState();
-  const queryClient = useQueryClient();
-  console.log(`🚀 ~ file: mini-form.jsx:19 ~ queryClient:`, queryClient);
+
   const navigate = useNavigate();
   const formSchema = z.object({
     quantity: z.string(),
@@ -47,9 +46,7 @@ const MiniForm = ({ handleClose, id }) => {
     mutationFn: addFormItem,
     onSuccess: async (data) => {
       toast.success(data.message);
-      await queryClient.invalidateQueries({
-        queryKey: ["food-item-consumer"],
-      });
+
       handleClose();
     },
     onError: async (data) => {

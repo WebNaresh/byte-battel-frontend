@@ -10,6 +10,7 @@ import {
   Modal,
   Typography,
 } from "@mui/material";
+import { useQueryClient } from "@tanstack/react-query";
 import React from "react";
 import MiniForm from "./mini-form";
 const style = {
@@ -24,12 +25,18 @@ const style = {
 };
 const FoodCard = ({ doc }) => {
   const [open, setOpen] = React.useState(false);
+  const queryClient = useQueryClient();
   const handleOpen = () => setOpen(true);
-  const handleClose = () => setOpen(false);
+  const handleClose = async () => {
+    await queryClient.invalidateQueries({
+      queryKey: ["food-item-consumer"],
+    });
+    setOpen(false);
+  };
   return (
-    <Card variant="outlined" className="!shadow-lg">
+    <Card variant="outlined" className="!shadow-lg p-4">
       <>
-        <CardContent className="flex flex-col !gap-2">
+        <CardContent className="flex flex-col !gap-2 !p-3">
           <Typography
             variant="h5"
             component="div"

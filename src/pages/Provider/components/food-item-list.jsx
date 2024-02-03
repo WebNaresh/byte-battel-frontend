@@ -34,7 +34,7 @@ const FoodList = () => {
     <div className="gap-4 grid md:grid-cols-3 sm:grid-cols-2 grid-cols-1">
       {data?.foodItems.map((doc) => {
         return (
-          <Card variant="outlined" className="">
+          <Card variant="outlined" className="shadow-lg">
             <>
               <CardContent className="flex flex-col !gap-2">
                 <Typography

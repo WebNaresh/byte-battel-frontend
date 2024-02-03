@@ -66,7 +66,15 @@ export default function TopNav() {
   });
   return (
     <Box sx={{ flexGrow: 1 }}>
-      <AppBar component={"nav"} color="transparent" enableColorOnDark>
+      <AppBar
+        component={"nav"}
+        enableColorOnDark
+        style={{
+          backdropFilter: "blur(2px) saturate(14%)",
+          WebkitBackdropFilter: "blur(2px) saturate(14%)",
+          backgroundColor: "rgba(249, 115, 22, 0.4)",
+        }}
+      >
         <Toolbar style={{ display: "flex", justifyContent: "space-between" }}>
           <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
             <Link to={"/"}>
