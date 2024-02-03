@@ -139,7 +139,9 @@ export default function TopNav() {
                 )}
                 {user !== null && user.type === "Consumer" && (
                   <Link to={"/notification-consumer"}>
-                    <MenuItem onClick={handleClose}>Notification</MenuItem>
+                    <MenuItem onClick={handleClose}>
+                      Reports of distribution
+                    </MenuItem>
                   </Link>
                 )}
               </Menu>

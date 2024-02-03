@@ -32,7 +32,7 @@ const NotificationConsumer = () => {
     <div className="p-8 flex flex-col gap-4">
       <span className=" text-primary">
         {" "}
-        You have {data?.approverNotification?.length} Notification{" "}
+        You have total {data?.approverNotification?.length} Entries{" "}
       </span>
       <div className="font-bold gap-4 grid grid-cols-2">
         {data?.approverNotification?.map((doc, i) => {
