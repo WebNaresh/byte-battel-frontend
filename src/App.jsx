@@ -26,7 +26,6 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-
       <UseEffectState>
         <TopLoadingBar />
         <AppLoader />

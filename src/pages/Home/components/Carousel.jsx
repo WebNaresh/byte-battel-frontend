@@ -16,7 +16,7 @@ export function AppCarousel(props) {
   ];
 
   return (
-    <Carousel>
+    <Carousel cycleNavigation={true}>
       {items.map((item, i) => (
         <Item key={i} item={item} />
       ))}
